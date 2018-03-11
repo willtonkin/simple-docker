@@ -3,21 +3,21 @@ version: '2'
 services:
   webserver:
     build: ./docker/webserver
-    image: runwaytest_web
+    image: simple_lamp
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - /Users/rachel/Docker/simple-docker/www:/var/www/html
+      - ./www:/var/www/html
     links:
       - db
 
   db:
     image: mysql:5.7
-    ports: 
+    ports:
       - "3306:3306"
     volumes:
       - ./db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=docker
-      - MYSQL_DATABASE=db_runwaytest
+      - MYSQL_DATABASE=db_dev
